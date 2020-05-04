@@ -112,5 +112,77 @@ aks-engine deploy --subscription-id XXXX-YYYY-ZZZZ \
 ---------------------------------------------------------------------------------------------------
 
 kubectl cluster-info
-
 kubectl get node
+
+
+---------------------------------------------------------------------------------------------------
+How To Set Up an Elasticsearch, Fluentd and Kibana (EFK) Logging Stack on Kubernetes
+---------------------------------------------------------------------------------------------------
+
+
+Introduction
+--------------------------------------------------------------------------------------------------------
+When running multiple services and applications on a Kubernetes cluster, a centralized, 
+cluster-level logging stack can help you quickly sort through and analyze the heavy volume
+of log data produced by your Pods.One popular centralized logging solution is the Elasticsearch, Fluentd, and Kibana (EFK) stack.
+
+--------------------------------------------------------------------------------------------------------
+Step 1 — Creating a Namespace
+--------------------------------------------------------------------------------------------------------
+kubectl create namespace kube-logging
+
+Step 2 — Creating the Elasticsearch StatefulSet
+  -Creating the Headless Service
+      kubectl create -f es-service.yml 
+  -Creating the rbac
+	  kubectl create -f es-rbac.yml
+  -Creating the StatefulSet
+      kubectl create -f elasticsearch_statefulset.yaml 
+   -Creating the Deployment	 
+	  kubectl create -f elasticsearch_deployment.yaml
+	  
+  
+Note :
+first forward the local port 9200 to the port 9200 on one of the Elasticsearch nodes (es-cluster-0) using kubectl port-forward:
+
+kubectl port-forward es-cluster-0 9200:9200 --namespace=kube-logging
+Then, in a separate terminal window, perform a curl request against the REST API:
+curl http://localhost:9200/_cluster/state?pretty	  
+	
+-----------------------------------------------------------------------------------------------------
+
+Step 3 — Creating the Kibana Deployment and Service
+--------------------------------------------------------------------------------------------------------
+
+kubectl create -f kibana.yaml
+Now, in your web browser, visit the following URL:
+http://localhost:5601  or http://loadbalacerip:5601 in case of azure service type Loadbalancer
+
+If you see the following Kibana welcome page, you’ve successfully deployed Kibana into your Kubernetes cluster.
+
+
+Step 4 — Creating the Fluentd deployment  with DaemonSet
+--------------------------------------------------------------------------------------------------------
+kubectl create -f fluentd.yaml
+
+Step 5 (Optional) — Testing Container Logging
+--------------------------------------------------------------------------------------------------------
+kubectl create -f counter.yaml
+
+
+Step 6 Deploy Logstash
+--------------------------------------------------------------------------------------------------------
+kubectl create -f logstash-configmap.yml
+kubectl create -f logstash-deployment.yml
+kubectl create -f logstash-service.yml
+
+
+Step 7 Deploy Kube state metrices 
+--------------------------------------------------------------------------------------------------------
+kubectl create -f kube-state-metrics.yml
+
+
+Step 8 Deploy Metric Beat as DaemonSet
+--------------------------------------------------------------------------------------------------------
+kubectl create -f metricbeat-kubernetes.yaml
+kubectl create -f metricbeat.yml

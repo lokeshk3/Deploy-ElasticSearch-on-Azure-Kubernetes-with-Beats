@@ -133,20 +133,20 @@ kubectl create namespace kube-logging
 
 Step 2 — Creating the Elasticsearch StatefulSet
 
-  -Creating the Headless Service
-      kubectl create -f es-service.yml 
+  Creating the Headless Service
+          kubectl create -f es-service.yml 
       
       
-  -Creating the rbac
-	  kubectl create -f es-rbac.yml
+  Creating the rbac
+	      kubectl create -f es-rbac.yml
 	  
 	  
-  -Creating the StatefulSet
-      kubectl create -f elasticsearch_statefulset.yaml 
+  Creating the StatefulSet
+             kubectl create -f elasticsearch_statefulset.yaml 
       
       
-   -Creating the Deployment	 
-	  kubectl create -f elasticsearch_deployment.yaml
+   Creating the Deployment	 
+	     kubectl create -f elasticsearch_deployment.yaml
 	  
   
 Note :

@@ -1,0 +1,6 @@
+FROM rajesh6752/auditbeat:v1
+COPY entrypoint.sh .
+RUN chmod +x ./entrypoint.sh
+CMD ./auditbeat -c auditbeat.yml -e
+CMD ./auditbeat setup -e
+ENTRYPOINT ["./entrypoint.sh"]

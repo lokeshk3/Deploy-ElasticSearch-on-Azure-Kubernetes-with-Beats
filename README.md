@@ -157,7 +157,9 @@ Note :
 first forward the local port 9200 to the port 9200 on one of the Elasticsearch nodes (es-cluster-0) using kubectl port-forward:
 
 kubectl port-forward es-cluster-0 9200:9200 --namespace=kube-logging
+
 Then, in a separate terminal window, perform a curl request against the REST API:
+
 curl http://localhost:9200/_cluster/state?pretty	  
 	
 -----------------------------------------------------------------------------------------------------
@@ -186,7 +188,11 @@ kubectl create -f counter.yaml
 Step 6 Deploy Logstash
 --------------------------------------------------------------------------------------------------------
 kubectl create -f logstash-configmap.yml
+
+
 kubectl create -f logstash-deployment.yml
+
+
 kubectl create -f logstash-service.yml
 
 
@@ -198,4 +204,6 @@ kubectl create -f kube-state-metrics.yml
 Step 8 Deploy Metric Beat as DaemonSet
 --------------------------------------------------------------------------------------------------------
 kubectl create -f metricbeat-kubernetes.yaml
+
+
 kubectl create -f metricbeat.yml

@@ -34,21 +34,21 @@ Purpose of this document is to deploy Aks Cluster on azure Cloud and by using th
 ------------------------------------------------------------------------------------
 ### Install the AKS engine and deploy a Kubernetes cluster
 ------------------------------------------------------------------------------------
-1. mkdir aks_engine
+1.  mkdir aks_engine
 
-2. cd aks_engine
+2.  cd aks_engine
 
 3. Login on Ubuntu Server & Install the AKS engine
 
-curl -o get-akse.sh https://raw.githubusercontent.com/Azure/aks-engine/master/scripts/get-akse.sh
+   curl -o get-akse.sh https://raw.githubusercontent.com/Azure/aks-engine/master/scripts/get-akse.sh
 
 4. Change the permission  
 
-chmod +x get-akse.sh 
+   chmod +x get-akse.sh 
 
 5. Run the script to insatll the aks-engine utility 
 
-./ get-akse.sh
+   ./ get-akse.sh
 
 6.  Run ssh-keygen -f akskey
 

@@ -205,5 +205,10 @@ Step 8 Deploy Metric Beat as DaemonSet
 --------------------------------------------------------------------------------------------------------
 kubectl create -f metricbeat-kubernetes.yaml
 
-
 kubectl create -f metricbeat.yml
+
+
+Step 9 Deploy Audit Beat as Daemon Set
+--------------------------------------------------------------------------------------------------------
+
+kubectl create -f auditbeat-kubernetes.yaml

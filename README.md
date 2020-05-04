@@ -155,7 +155,9 @@ Step 3 — Creating the Kibana Deployment and Service
 --------------------------------------------------------------------------------------------------------
 
 kubectl create -f kibana.yaml
+
 Now, in your web browser, visit the following URL:
+
 http://localhost:5601  or http://loadbalacerip:5601 in case of azure service type Loadbalancer
 
 If you see the following Kibana welcome page, you’ve successfully deployed Kibana into your Kubernetes cluster.
